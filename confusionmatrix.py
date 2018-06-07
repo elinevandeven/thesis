@@ -29,6 +29,13 @@ def get_session():
 
 # set the modified tf session as backend in keras
 keras.backend.tensorflow_backend.set_session(get_session())
+
+# load retinanet model
+model_name = 'resnet50_csv_03.h5'
+model_path = os.path.join('/home/eline/snapshots/all_animals_crops/',model_name)
+model = keras.models.load_model(model_path, custom_objects=custom_objects)
+labels_to_names = {0: 'zebra', 1: 'giraffe', 2:'elephant'}
+
 #load annotations
 annotations_file =  '/home/eline/crops/all_animals/retina_test_crops_all_eline.csv'
 
